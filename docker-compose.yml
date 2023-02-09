@@ -11,8 +11,9 @@ services:
       - DB_NAME=saqib
       - DB_USER=saqib
       - DB_PASS=saqib@123
-      - DB_HOST=blogdb
-    entrypoint: ./entrypoint.sh
+    volumes:
+      - .:/app
+    command: sh -c "python manage.py runserver 0.0.0.0:8000"
     depends_on:
       - db
   db:
@@ -22,7 +23,7 @@ services:
       - POSTGRES_USER=saqib
       - POSTGRES_PASSWORD=saqib@123
     volumes :
-      - devops_data:/var/lib/postgresql/data
+      - saqib2_data:/var/lib/postgresql/data
   pgadmin:
     image: dpage/pgadmin4
     ports:
@@ -34,5 +35,5 @@ services:
       - db
 
 volumes:
-  devops_data:
+  saqib2_data:
 

@@ -13,4 +13,5 @@ COPY . .
 ENV PATH="/py/bin:$PATH"
 USER saqib
 EXPOSE 8000
+ENTRYPOINT ["./entrypoint.sh"]
 

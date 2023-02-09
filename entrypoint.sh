@@ -1,15 +1,16 @@
 #!/bin/sh
 
-set -e
+if [ "$DATABASE" = "postgres" ]
+then
+    echo "Waiting for postgres..."
 
-until psql -h db -U postgres -c '\q'; do
-  >&2 echo "Postgres is unavailable - sleeping"
-  sleep 1
-done
+    while ! nc -z $DB_HOST $DB_PORT; do
+      sleep 0.1
+    done
 
->&2 echo "Postgres is up - executing command"
+    echo "PostgreSQL started"
+fi
 
-python manage.py migrate
-python manage.py runserver 0.0.0.0:8000
+
 exec "$@"
 
