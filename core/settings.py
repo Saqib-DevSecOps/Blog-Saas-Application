@@ -33,6 +33,8 @@ ALLOWED_HOSTS = ['*']
 
 SHARED_APPS = (
     'django_tenants',  # mandatory
+    'src.tenant',
+    'src.accounts',
     'django.contrib.contenttypes',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -40,16 +42,28 @@ SHARED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'src.tenant.apps.TenantConfig',
+    'src.website',
 
 )
-
 TENANT_APPS = (
-    'src.accounts.apps.AccountsConfig',
+    'django.contrib.contenttypes',
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+
+    'src.accounts',
+    'src.tenant',
+
 )
 INSTALLED_APPS = list(SHARED_APPS) + [app for app in TENANT_APPS if app not in SHARED_APPS]
+
+
 TENANT_MODEL = "tenant.Client"
 TENANT_DOMAIN_MODEL = "tenant.Domain"
+
+
 MIDDLEWARE = [
     'django_tenants.middleware.main.TenantMainMiddleware',
     'django.middleware.security.SecurityMiddleware',
@@ -70,8 +84,8 @@ TEMPLATES = [
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
-                'django.template.context_processors.debug',
                 'django.template.context_processors.request',
+                'django.template.context_processors.debug',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],

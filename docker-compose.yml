@@ -1,7 +1,7 @@
 version : '3.8'
 services:
   web:
-    container_name: devops
+    container_name: blog
     build:
       context: .
       dockerfile: Dockerfile
@@ -22,8 +22,6 @@ services:
       - POSTGRES_DB=saqib
       - POSTGRES_USER=saqib
       - POSTGRES_PASSWORD=saqib@123
-    volumes :
-      - saqib2_data:/var/lib/postgresql/data
   pgadmin:
     image: dpage/pgadmin4
     ports:
@@ -34,6 +32,4 @@ services:
     depends_on:
       - db
 
-volumes:
-  saqib2_data:
 
