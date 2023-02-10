@@ -14,8 +14,26 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include, URLResolver, URLPattern
+
+
+class RequestURLResolver(URLResolver):
+    def __init__(self, urlconf_name, default_kwargs, request):
+        self.request = request
+        super(RequestURLResolver, self).__init__(None, urlconf_name, default_kwargs)
+
+
+def select_url(request):
+    tenant_name = request.tenant.name
+    if tenant_name == "public":
+        return [URLPattern('', include('src.website.urls'))]
+
+
+def get_tenant_url(request):
+    return RequestURLResolver(select_url(request), {}, request)
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', include([get_tenant_url])),
 ]
