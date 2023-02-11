@@ -59,7 +59,7 @@ INSTALLED_APPS = list(SHARED_APPS) + [app for app in TENANT_APPS if app not in S
 
 TENANT_MODEL = "tenant.Client"
 TENANT_DOMAIN_MODEL = "tenant.Domain"
-
+PUBLIC_SCHEMA_URLCONF = 'core.urls'
 MIDDLEWARE = [
     'django_tenants.middleware.main.TenantMainMiddleware',
     'django.middleware.security.SecurityMiddleware',
@@ -71,7 +71,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'core.urls'
+ROOT_URLCONF = 'core.tenant_urls'
 
 TEMPLATES = [
     {
