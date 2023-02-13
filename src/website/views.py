@@ -7,8 +7,4 @@ from django.views.generic import TemplateView
 
 
 class HomeTemplateView(TemplateView):
-    def get_template_names(self):
-        print(self.request.tenant.name)
-        if self.request.tenant.name == "public":
-            return 'website/home.html'
-        return 'website/hom2.html'
+    template_name = 'website/home.html'
