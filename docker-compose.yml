@@ -22,6 +22,8 @@ services:
       - POSTGRES_DB=saqib
       - POSTGRES_USER=saqib
       - POSTGRES_PASSWORD=saqib@123
+    volumes:
+      - saqib_data:/var/lib/postgresql/data
   pgadmin:
     image: dpage/pgadmin4
     ports:
@@ -32,4 +34,6 @@ services:
     depends_on:
       - db
 
+volumes:
+  saqib_data:
 

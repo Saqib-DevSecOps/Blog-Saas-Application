@@ -39,6 +39,9 @@ SHARED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
 
     'src.website',
 
@@ -56,10 +59,19 @@ TENANT_APPS = (
 
 )
 INSTALLED_APPS = list(SHARED_APPS) + [app for app in TENANT_APPS if app not in SHARED_APPS]
+SITE_ID = 1
 
 TENANT_MODEL = "tenant.Client"
 TENANT_DOMAIN_MODEL = "tenant.Domain"
 PUBLIC_SCHEMA_URLCONF = 'core.urls'
+AUTHENTICATION_BACKENDS = [
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
 MIDDLEWARE = [
     'django_tenants.middleware.main.TenantMainMiddleware',
     'django.middleware.security.SecurityMiddleware',
