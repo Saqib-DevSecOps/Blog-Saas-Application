@@ -5,7 +5,7 @@ from django_tenants.models import TenantMixin, DomainMixin
 
 
 class Client(TenantMixin):
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100,help_text='domain name ')
     paid_until = models.DateField()
     on_trial = models.BooleanField()
     created_on = models.DateField(auto_now_add=True)
