@@ -4,5 +4,5 @@ from src.accounts.views import ClientCreateView
 
 app_name = "accounts"
 urlpatterns = [
-    path('client/', ClientCreateView.as_view(), name='client')
+    path('client/', ClientCreateView.as_view(), name='client'),
 ]

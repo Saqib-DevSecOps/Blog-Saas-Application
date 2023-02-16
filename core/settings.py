@@ -169,3 +169,7 @@ ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = "none"
 ACCOUNT_USER_MODEL_USERNAME_FIELD = "username"
 ACCOUNT_USER_MODEL_EMAIL_FIELD = "email"
+
+ACCOUNT_FORMS = {
+    'signup': 'src.accounts.forms.CustomSignupForm'
+}

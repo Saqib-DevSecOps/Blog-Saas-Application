@@ -1,9 +1,10 @@
+from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.views import View
 from django.views.generic import CreateView
-
-from src.accounts.forms import ClientModelForm
+from allauth.account.views import SignupView
+from src.accounts.forms import ClientModelForm, CustomSignupForm
 from src.tenant.models import Client, Domain
 
 
@@ -27,4 +28,3 @@ class ClientCreateView(View):
             domain.is_primary = True
             domain.save()
         return HttpResponse('error')
-
