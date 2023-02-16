@@ -1,3 +1,4 @@
+{% load static %}
 <!doctype html>
 <html lang="en">
 
@@ -13,7 +14,7 @@
     <link href="{% static 'assets/img/favicon/apple-touch-icon.png' %} " rel="apple-touch-icon" sizes="180x180">
     <link href="{% static 'assets/img/favicon/favicon-32x32.png' %} " rel="icon" sizes="32x32" type="image/png">
     <link href="{% static 'assets/img/favicon/favicon-16x16.png' %} " rel="icon" sizes="16x16" type="image/png">
-    <link color="#5bbad5' %} " href="{% static 'assets/img/favicon/safari-pinned-tab.svg" rel="mask-icon">
+    <link color="#5bbad5' %} " href="{% static 'assets/img/favicon/safari-pinned-tab.svg' %}" rel="mask-icon">
     <meta content="#da532c" name="msapplication-TileColor">
     <meta content="#ffffff" name="theme-color">
 
@@ -32,7 +33,7 @@
 
 
     <!-- Site Stylesheet -->
-    <link href="assets/css/app.css" rel="stylesheet" type="text/css">
+    <link href="{% static 'assets/css/app.css' %}" rel="stylesheet" type="text/css">
 
     <!-- Google Web Fonts -->
     <link href="../../fonts.googleapis.com/css6450.css?family=Barlow+Condensed:300,400,500,600,700,800%7CPoppins:300,400,500,600,700,800"
