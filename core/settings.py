@@ -10,18 +10,17 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 SHARED_APPS = (
     'django_tenants',  # mandatory
-    'src.tenant',
-    'src.accounts',
+
+
     'django.contrib.contenttypes',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
 
+    'src.tenant',
+    'src.accounts',
     'src.website',
 
 )
@@ -33,6 +32,10 @@ TENANT_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+
     'src.accounts',
     'src.tenant',
 
@@ -41,6 +44,7 @@ INSTALLED_APPS = list(SHARED_APPS) + [app for app in TENANT_APPS if app not in S
 SITE_ID = 1
 TENANT_MODEL = "tenant.Client"
 TENANT_DOMAIN_MODEL = "tenant.Domain"
+
 PUBLIC_SCHEMA_URLCONF = 'core.urls'
 
 
