@@ -13,7 +13,6 @@ from src.tenant.models import Client, Domain
 
 class LoginCheck(View):
     def get(self, request):
-        print(request.tenant)
         if str(request.tenant) == "public":
             return redirect('/admin')
         print(request.tenant)
@@ -22,6 +21,5 @@ class LoginCheck(View):
 class LogoutCheck(View):
     def get(self, request, *args, **kwargs):
         if str(request.tenant) == "public":
-            print("in")
             return redirect('account_login')
         return redirect("tenant_website:home")
