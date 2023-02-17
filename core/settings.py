@@ -45,7 +45,7 @@ SITE_ID = 1
 TENANT_MODEL = "tenant.Client"
 TENANT_DOMAIN_MODEL = "tenant.Domain"
 
-PUBLIC_SCHEMA_URLCONF = 'core.urls'
+PUBLIC_SCHEMA_URLCONF = 'core.public_urls'
 
 
 AUTHENTICATION_BACKENDS = [
@@ -68,7 +68,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'core.tenant_urls'
+ROOT_URLCONF = 'core.urls'
 
 TEMPLATES = [
     {
