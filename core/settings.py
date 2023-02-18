@@ -88,6 +88,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'core.wsgi.application'
 LOGIN_REDIRECT_URL = "accounts:login_check"
+LOGOUT_REDIRECT_URL = "accounts:logout_check"
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
