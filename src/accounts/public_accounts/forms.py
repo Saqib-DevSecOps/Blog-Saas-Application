@@ -2,11 +2,10 @@ from django.contrib.auth import password_validation
 from django.contrib.auth.models import User
 from django import forms
 from django.core.exceptions import ValidationError
+from django.http import HttpResponseRedirect
 from django.shortcuts import redirect
 from django.utils.translation import gettext_lazy as _
 from django_tenants.utils import schema_context, tenant_context
-from django_tenants.urlresolvers import reverse
-
 from src.tenant.models import Client, Domain
 
 
@@ -49,21 +48,7 @@ class CustomSignupForm(forms.ModelForm):
             self.add_error("domain", "Domain Already registered")
         return name
 
-    def save(self, commit=True):
-        name = self.cleaned_data.get("domain")
-        username = self.cleaned_data.get("username")
-        email = self.cleaned_data.get("email")
-        password= self.cleaned_data.get("password1")
-        tenant = Client.objects.create(schema_name=name)
-        domain_name = f"{name}.localhost"
-        domain = Domain.objects.create(domain=domain_name, tenant=tenant)
-        user = super().save(commit=False)
-        user.set_password(self.cleaned_data["password1"])
-        print(tenant)
-        if commit:
-            user.save()
-            print("sace")
-        with tenant_context(tenant):
-            user = User.objects.create_superuser(username=username,email = email,password=password)
-            print(user)
-            return redirect(f"{name}:8000/")
+
+class DomainFinderForm(forms.Form):
+    domain = forms.CharField(max_length=200, label="Domain Name"
+                             , widget=forms.TextInput(attrs={"placeholder": "Enter Subdomain Name"}))
