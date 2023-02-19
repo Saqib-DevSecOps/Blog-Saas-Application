@@ -19,6 +19,7 @@ SHARED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+
     'src.tenant',
     'src.accounts',
     'src.website',

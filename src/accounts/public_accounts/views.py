@@ -43,7 +43,9 @@ class DomainFinder(View):
             domain_name = form.cleaned_data.get('domain')
             domain = Client.objects.filter(schema_name=domain_name)
             if domain.exists():
-                url = f"http://{domain_name}.localhost:8000/accounts/login/"
+                if domain_name == "public":
+                    return redirect("/")
+                url = f"http://{domain_name}.localhost:8000/"
                 return HttpResponseRedirect(url)
             messages.error(request, "Domain nor Found")
             return redirect("public_accounts:domain_finder")
