@@ -1,7 +1,6 @@
 import django_filters
 from django.db.models import Q
 from django.forms import TextInput, ModelForm
-
 from src.website.models import BlogCategory, Blog, Comment
 
 
