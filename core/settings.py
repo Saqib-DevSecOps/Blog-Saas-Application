@@ -19,10 +19,10 @@ SHARED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'django_filters',
 
     'src.tenant',
     'src.accounts',
-    'src.website',
 
 )
 TENANT_APPS = (
@@ -39,6 +39,7 @@ TENANT_APPS = (
 
     'src.accounts',
     'src.tenant',
+    'src.website',
 
 )
 INSTALLED_APPS = list(SHARED_APPS) + [app for app in TENANT_APPS if app not in SHARED_APPS]
@@ -146,8 +147,7 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     BASE_DIR / 'static'
 ]
-LOGIN_REDIRECT_URL = 'accounts:login_check'
-LOGOUT_REDIRECT_URL = 'accounts:logout_check'
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 

@@ -5,5 +5,5 @@ sqlparse==0.4.3
 psycopg2-binary
 django-tenants
 django-allauth
-django-filters
 Pillow
+django-filter
