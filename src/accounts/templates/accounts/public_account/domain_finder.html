@@ -1,5 +1,93 @@
-<form method="post">
-    {% csrf_token %}
-{{form.as_p}}
-    <button type="submit">submit</button>
-</form>
+{% extends "core/base_auth.html" %}
+{% load widget_tweaks %}
+{% load i18n %}
+{% block content %}
+{% block auth_content %}
+
+<body>
+
+<div class="auth-page-wrapper pt-5">
+    <!-- auth page bg -->
+    <div class="auth-one-bg-position auth-one-bg" id="auth-particles">
+        <div class="bg-overlay"></div>
+
+        <div class="shape">
+            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
+                 viewBox="0 0 1440 120">
+                <path d="M 0,36 C 144,53.6 432,123.2 720,124 C 1008,124.8 1296,56.8 1440,40L1440 140L0 140z"></path>
+            </svg>
+        </div>
+    </div>
+
+    <!-- auth page content -->
+    <div class="auth-page-content">
+        <div class="container">
+
+            <!-- end row -->
+
+            <div class="row justify-content-center">
+                <div class="col-md-9 col-lg-7 col-xl-6">
+                    <div class="card mt-4">
+
+                        <div class="card-body p-4">
+                            <div class="text-center mt-2">
+                                <h5 class="text-primary">Create New Account</h5>
+                                <p class="text-muted">Get your free account now</p>
+                            </div>
+                            <div class="p-2 mt-4">
+                                <form method="post">
+                                    {% csrf_token %}
+                                    <div class="mb-3">
+
+                                        {% for hidden in form.hidden_fields %}
+                                        {{ hidden }}
+                                        {% endfor %}
+
+                                        {% for field in form.visible_fields %}
+                                        <div class="form-group">
+                                            <label class="form-label">{% render_field field.label %} <span
+                                                    class="text-danger">*</span></label>
+                                                {% render_field field class="form-control "%}
+                                                {% render_field field.help_text %}
+                                            {% for error in field.errors %}
+                                            <span class="help-block text-danger">{{ error }}</span>
+                                            {% endfor %}
+                                        </div>
+                                        {% endfor %}
+
+
+                                    </div>
+
+                                    <div class="mt-4">
+                                        <button class="btn btn-success w-100" type="submit">Sign Up</button>
+                                    </div>
+
+                                </form>
+   <div class="mt-4 text-center">
+                        <p class="mb-0">Not have an account ? <a href="{% url 'public_accounts:signup' %}"
+                                                                     class="fw-semibold text-primary text-decoration-underline">
+                            Signin </a></p>
+                    </div>
+                            </div>
+
+                        </div>
+
+                        <!-- end card body -->
+                    </div>
+                    <!-- end card -->
+
+
+
+                </div>
+            </div>
+            <!-- end row -->
+        </div>
+        <!-- end container -->
+    </div>
+    <!-- end auth page content -->
+
+    <!-- footer -->
+    <!-- end Footer -->
+</div>
+{% endblock auth_content %}
+{% endblock %}

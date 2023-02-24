@@ -6,4 +6,7 @@ psycopg2-binary
 django-tenants
 django-allauth
 Pillow
+django-crispy-forms
+django-widget-tweaks
 django-filter
+crispy-bootstrap5

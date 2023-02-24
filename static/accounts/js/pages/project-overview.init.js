@@ -1,0 +1,1 @@
+document.querySelectorAll(".favourite-btn").forEach(function(t){t.addEventListener("click",function(t){this.classList.toggle("active")})});
