@@ -1,22 +1,16 @@
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
-from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.utils.decorators import method_decorator
 from django.views import View
 from django.views.generic import TemplateView
 from django.views.generic.list import ListView
-
 from src.website.filters import BlogFilter
 from src.website.models import Blog, BlogCategory, Comment
 
 
-# Create your views here.
-
-
-def home(request):
-    print(request.tenant.domain_url)
-    return HttpResponse("ok")
+class HomeView(TemplateView):
+    template_name = 'website/home.html'
 
 
 class Blogs(ListView):
