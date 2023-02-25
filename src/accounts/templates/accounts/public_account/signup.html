@@ -49,6 +49,7 @@
                                                     class="text-danger">*</span></label>
                                                 {% render_field field class="form-control "%}
                                                 {% render_field field.help_text %}
+                                            <br>
                                             {% for error in field.errors %}
                                             <span class="help-block text-danger">{{ error }}</span>
                                             {% endfor %}

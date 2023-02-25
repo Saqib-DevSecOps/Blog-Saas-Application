@@ -7,6 +7,7 @@ from django.shortcuts import redirect
 from django.utils.translation import gettext_lazy as _
 from django_tenants.utils import schema_context, tenant_context
 from src.tenant.models import Client, Domain
+from django.contrib.auth.forms import UserCreationForm
 
 
 class CustomSignupForm(forms.ModelForm):
@@ -25,7 +26,8 @@ class CustomSignupForm(forms.ModelForm):
         strip=False,
         help_text=_("Enter the same password as before, for verification."),
     )
-    domain = forms.CharField(max_length=200)
+    email = forms.EmailField(max_length=30,required=True)
+    domain = forms.CharField(max_length=200, required=True)
 
     class Meta:
         model = User
@@ -40,6 +42,17 @@ class CustomSignupForm(forms.ModelForm):
                 code="password_mismatch",
             )
         return password2
+
+    def _post_clean(self):
+        super()._post_clean()
+        # Validate the password after self.instance is updated with form data
+        # by super().
+        password = self.cleaned_data.get("password2")
+        if password:
+            try:
+                password_validation.validate_password(password, self.instance)
+            except ValidationError as error:
+                self.add_error("password2", error)
 
     def clean_domain(self):
         name = self.cleaned_data.get("domain")
