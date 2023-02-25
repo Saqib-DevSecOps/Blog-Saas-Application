@@ -1,0 +1,46 @@
+<div>
+    {% if non_fields_errors %}
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>Error! </strong> {{ non_field_errors }}
+            <button aria-label="Close"   class="btn-close" data-bs-dismiss="alert" type="button">
+            </button>
+        </div>
+    {% endif %}
+    {% if messages %}
+    <div class="container">
+        {% for message in messages %}
+        {% if message.tags == 'info' %}
+        <div class="alert alert-info alert-dismissible fade show" role="alert">
+            <strong>{{ message.tags }}! </strong> {{ message }}
+            <button aria-label="Close" class="btn-close" data-bs-dismiss="alert" type="button">
+            </button>
+        </div>
+        {% elif message.tags == 'debug' %}
+        <div class="alert alert-dark alert-dismissible fade show" role="alert">
+            <strong>{{ message.tags }}! </strong> {{ message }}
+            <button aria-label="Close"   class="btn-close" data-bs-dismiss="alert" type="button">
+            </button>
+        </div>
+        {% elif message.tags == 'success' %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>{{ message.tags }}! </strong> {{ message }}
+            <button aria-label="Close"   class="btn-close" data-bs-dismiss="alert" type="button">
+            </button>
+        </div>
+        {% elif message.tags == 'error' %}
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>{{ message.tags }}! </strong> {{ message }}
+            <button aria-label="Close"   class="btn-close" data-bs-dismiss="alert" type="button">
+            </button>
+        </div>
+        {% else %}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>{{ message.tags }}! </strong> {{ message }}
+            <button aria-label="Close"   class="btn-close" data-bs-dismiss="alert" type="button">
+            </button>
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+    {% endif %}
+</div>

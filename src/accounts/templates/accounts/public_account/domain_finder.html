@@ -34,6 +34,7 @@
                                 <h5 class="text-primary">Create New Account</h5>
                                 <p class="text-muted">Get your free account now</p>
                             </div>
+                            {% include 'core/messages.html' %}
                             <div class="p-2 mt-4">
                                 <form method="post">
                                     {% csrf_token %}
